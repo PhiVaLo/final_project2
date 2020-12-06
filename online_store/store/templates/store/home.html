@@ -1,0 +1,75 @@
+{% extends 'store/base.html' %}
+
+{% block head %}
+<style>
+    .flexbox {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-wrap: wrap;
+        text-align: center;
+    }
+
+    .left {
+        margin: 0 15px 0 auto
+    }
+
+    .right {
+        margin: 0 auto 0 15px
+    }
+</style>
+{% endblock head %}
+
+{% block content %}
+<div>
+    <h1>Home</h1>
+    <p>Welcome to <b>Online Store</b>.</p>
+    <br>
+
+    {% if user.is_authenticated %}
+    <div class="row box-element1 dark">
+        <div class="text-right font-weight-bold mr-3">
+            <p>Username:</p>
+            <p>Email:</p>
+            <p>First Name:</p>
+            <p>Last Name:</p>
+            <p style="margin-bottom: 26px">Image:</p>
+            <p>Day of Birth:</p>
+            <p>Country:</p>
+            <p>City:</p>
+            <p>Zip Code:</p>
+            <p>Address1:</p>
+            <p>Address2:</p>
+            <p>Phone:</p>
+            <p>Additional Information:</p>
+        </div>
+        <div class="ml-3">
+            <p>{{ user.username }}</p>
+            <p>{{ user.email }}</p>
+            {% if user.first_name %}<p>{{ user.first_name }}</p>{% else %} <p>-</p> {% endif %}
+            {% if user.last_name %}<p>{{ user.last_name }}</p>{% else %} <p>-</p> {% endif %}
+            <p><img id="profile-icon" src="{{ user.profile.image.url }}"></p>
+            {% if user.date_of_birth %}<p>{{ user.date_of_birth }}</p>{% else %} <p>-</p> {% endif %}
+            <p>{{ user.profile.get_country_display }} ({{ user.profile.country }})</p>
+            <p>{{ user.profile.city }}</p>
+            <p>{{ user.profile.zip_code }}</p>
+            <p>{{ user.profile.address1 }}</p>
+            {% if user.profile.address2 %}<p>{{ user.profile.address2 }}</p>{% else %} <p>-</p> {% endif %}
+            {% if user.profile.phone %}<p>{{ user.profile.phone }}</p>{% else %} <p>-</p> {% endif %}
+            {% if user.profile.additional_information %}<p>{{ user.profile.additional_information }}</p>{% else %} <p>-</p> {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
+    {{ user.profile.first_name }}
+    {{ user.profile.last_name }}
+    {{ user.profile.email }}
+
+</div>
+{% endblock content %}
+
+{% block script %}
+<script>
+     document.querySelector('#home').classList.add('active');
+</script>
+{% endblock script %}

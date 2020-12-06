@@ -1,0 +1,64 @@
+#div_id_username,
+#div_id_password1,
+#div_id_password2,
+#div_id_email,
+#div_id_first_name,
+#div_id_last_name, 
+#div_id_date_of_birth, 
+#div_id_country, 
+#div_id_city, 
+#div_id_zip_code, 
+#div_id_address1, 
+#div_id_address2, 
+#div_id_phone, 
+#div_id_additional_information
+{
+    position:relative;
+    /* border: 1px solid red; */
+}
+
+#id_username,
+#id_password1,
+#id_password2,
+#id_email,
+#id_first_name,
+#id_last_name, 
+#id_date_of_birth, 
+#id_country, 
+#id_city, 
+#id_zip_code, 
+#id_address1, 
+#id_address2, 
+#id_phone, 
+#id_additional_information
+{
+    display: inline-block;
+    width: 60%;
+    width: 63%;
+    position: absolute;
+    top: -6px;
+    right: 0px;
+}
+
+small[id*="hint"],
+p[id*="error"] > strong 
+{
+    margin-left: 200px;
+}
+
+form label {
+    /* border: 1px solid green; */
+    width: 33%;
+    text-align: right;
+    font-size: 16px;
+}
+
+
+
+
+
+
+#div_id_additional_information
+{
+    margin-bottom: 250px;
+}

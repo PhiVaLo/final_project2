@@ -1,0 +1,75 @@
+{% extends 'store/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/forms.css' %}">
+<style>
+    #div_id_username::before {
+        content: 'User Login';
+        position: absolute;
+        font-size: 18px;
+        top: -50px;
+        left: 60%;
+    }
+
+    #div_id_username {
+        margin-top: 60px;
+    }
+
+
+
+    #div_id_email::before {
+        content: 'Personal Information';
+        position: absolute;
+        font-size: 18px;
+        top: -50px;
+        left: 52%;
+    }
+
+    #div_id_email {
+        margin-top: 120px;
+    }
+</style>
+
+{% endblock head %}
+
+{% block content %}
+<div class="box-element1 box-element2 dark">
+    {% comment %} <div class="col-lg-12 dark"> {% endcomment %}
+        <form method="post" action="">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4 center">Sign Up</legend>
+                {{ form|crispy }}
+                {% comment %} {{ form.username|as_crispy_field }}
+                {{ form.password1|as_crispy_field }}
+                {{ form.password2|as_crispy_field }}
+                {{ form.email|as_crispy_field }}
+                <div class="border-top pt-3"></div>
+                {{ form.date_of_birth|as_crispy_field }}
+                <div class="border-top pt-3"></div>
+                {{ form.country|as_crispy_field }}
+                {{ form.city|as_crispy_field }}
+                {{ form.zip_code|as_crispy_field }}
+                {{ form.address1|as_crispy_field }} {% endcomment %}
+
+            </fieldset>
+
+            <p style="text-align: center; font-size: 0.7em">By creating an account, you agree to our <a href=#
+                    class="green">Terms of Service</a>.</p>
+
+            <div class="form-group">
+                <button class="btn btn-info btn-block" type="submit">Sign Up</button>
+            </div>
+        </form>
+
+        <!-- If you already have an account, no need to sign up  -->
+        <div class="border-top pt-3 text-center">
+            <small class="text-muted">
+                Already have an account? <a class="ml-1" href="{% url 'login' %}">Sign In</a>
+            </small>
+        </div>
+
+
+    </div>
+    {% endblock content %}
