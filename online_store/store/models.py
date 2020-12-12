@@ -26,6 +26,11 @@ class Product(models.Model):
     description = models.CharField(max_length=2000, null=True, blank=True)
 
     category = models.IntegerField(null=True, blank=True)
+    featured = models.BooleanField(null=True, blank=True, default=False)
+    image_subs1 =  models.ImageField(upload_to='product_images', null=True, blank=True)
+    image_subs2 =  models.ImageField(upload_to='product_images', null=True, blank=True)
+    image_subs3 =  models.ImageField(upload_to='product_images', null=True, blank=True)
+    image_subs4 =  models.ImageField(upload_to='product_images', null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -62,6 +67,13 @@ class Product(models.Model):
         #     pass
 
 
+
+class Category(models.Model):
+    name = models.CharField(max_length=200, null=True)
+    number = models.IntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Order(models.Model):

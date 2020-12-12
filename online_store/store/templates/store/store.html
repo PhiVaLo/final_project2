@@ -16,11 +16,15 @@
 
 {% block head %}
 <style>
+
+{% comment %} 
     a,
     a:hover {
         text-decoration: none;
         color: black;
     }
+
+ {% endcomment %}
 
     .store-flex {
         display: flex;
@@ -123,10 +127,7 @@
 {% endcomment %}
 
 
-
-
-
-
+{% comment %}
 
 <table>
     <tr>
@@ -137,8 +138,8 @@
 
                 <h5>Cloths</h5>
                 <input id="1" type="checkbox" name="1" value="" checked> <label for="1">Shirt</label><br>
-                <input id="2" type="checkbox" name="2" value="" > <label for="2">Pant</label><br>
-                <input id="3" type="checkbox" name="3" value="" > <label for="3">Shoes</label><br>
+                <input id="2" type="checkbox" name="2" value=""> <label for="2">Pant</label><br>
+                <input id="3" type="checkbox" name="3" value=""> <label for="3">Shoes</label><br>
 
                 <div class="border-bottom border-dark mb-3 mt-3"></div>
 
@@ -150,9 +151,9 @@
                 <div class="border-bottom border-dark mb-3 mt-3"></div>
 
                 <h5>Electronics</h5>
-                <input id="7" type="checkbox" name="7" value="" > <label for="7">Computer</label><br>
-                <input id="8" type="checkbox" name="8" value="" > <label for="8">Laptop</label><br>
-                <input id="9" type="checkbox" name="9" value="" > <label for="9">Mobile</label><br>
+                <input id="7" type="checkbox" name="7" value=""> <label for="7">Computer</label><br>
+                <input id="8" type="checkbox" name="8" value=""> <label for="8">Laptop</label><br>
+                <input id="9" type="checkbox" name="9" value=""> <label for="9">Mobile</label><br>
 
                 <div class="border-bottom border-dark mb-3 mt-3"></div>
 
@@ -180,7 +181,8 @@
 
                 <!-- buttons to be deleted / added in detail_view -->
                 <div class=" text-center">
-                    <button data-product={{ product.id }} data-action="add" class="btn btn-outline-success add-btn rounded update-cart m-1">+ </button>
+                    <button data-product={{ product.id }} data-action="add"
+                        class="btn btn-outline-success add-btn rounded update-cart m-1">+ </button>
                     <a class="btn btn-outline-info rounded m-1" href="{% url 'product_detail' product.pk %}">?</a>
                 </div>
 
@@ -194,6 +196,102 @@
 
     </tr>
 </table>
+{% endcomment %}
+
+
+
+
+
+
+
+
+
+
+<!-- ----------------------------------------------------------------------------------- -->
+<!-- Categories -->
+<!-- ----------------------------------------------------------------------------------- -->
+
+<div class="small-container">
+    <div class="row row-2">
+        <h2>Category</h2>
+    </div>
+
+    <div class="row category-filter">
+        {% for category in categories %}
+        <div class="col-4">
+            <input id="{{ category.number }}" type="checkbox" name="{{ category.number }}" value="" checked>
+            <label for="{{ category.number }}">{{ category.name }}</label>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+<!-- ----------------------------------------------------------------------------------- -->
+<!-- Products -->
+<!-- ----------------------------------------------------------------------------------- -->
+<div class="small-container">
+
+    <div class="row row-2">
+        <h2>All Products</h2>
+        <select>
+            <option>Default Sorting</option>
+            <option>Sort by Price</option>
+            <option>Sort by Popularity</option>
+            <option>Sort by Rating</option>
+            <option>Sort by Sale</option>
+        </select>
+    </div>
+
+    <div class="row">
+        {% for product in products %}
+        <div class="col-4 item {{ product.category }}">
+            <a href="{% url 'product_detail' product.pk %}"> <img src="{{ product.imageURL }}"> </a>
+            <h4>{{ product.name }}</h4>
+            <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <i class="far fa-star"></i>
+            </div>
+            <p>${{ product.price }}</p>
+
+
+            <!-- buttons to be deleted / added in detail_view -->
+            <div class=" text-center">
+                <button data-product={{ product.id }} data-action="add" class="update-cart">+</button>
+                <a class="" href="{% url 'product_detail' product.pk %}">?</a>
+            </div>
+
+
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="page-btn">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>&#8594;</span>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -249,42 +347,36 @@
 
 
 
-// jQuery
-$(document).ready(function(){
+    // jQuery
+    $(document).ready(function () {
 
-    $('#1').click(function() {
-        if ($('.item').hasClass('1')) {
-            $('.1').toggleClass('hidden');
-        }
+        $('#1').click(function () {
+            if ($('.item').hasClass('1')) {
+                $('.1').toggleClass('hidden');
+            }
+        })
+
+        $('#4').click(function () {
+            if ($('.item').hasClass('4')) {
+                $('.4').toggleClass('hidden');
+            }
+        })
+
+        $('#5').click(function () {
+            if ($('.item').hasClass('5')) {
+                $('.5').toggleClass('hidden');
+            }
+        })
+        $('#6').click(function () {
+            if ($('.item').hasClass('6')) {
+                $('.6').toggleClass('hidden');
+            }
+        })
+        $('#10').click(function () {
+            if ($('.item').hasClass('None')) {
+                $('.None').toggleClass('hidden');
+            }
+        })
     })
-
-    $('#4').click(function() {
-        if ($('.item').hasClass('4')) {
-            $('.4').toggleClass('hidden');
-        }
-    })
-
-    $('#5').click(function() {
-        if ($('.item').hasClass('5')) {
-            $('.5').toggleClass('hidden');
-        }
-    })
-    $('#6').click(function() {
-        if ($('.item').hasClass('6')) {
-            $('.6').toggleClass('hidden');
-        }
-    })
-    $('#10').click(function() {
-        if ($('.item').hasClass('None')) {
-            $('.None').toggleClass('hidden');
-        }
-    })
-})
-
-
-
-
-
-
 </script>
 {% endblock script %}

@@ -1,4 +1,5 @@
 {% extends 'store/base.html' %}
+{% load static %}
 
 {% block head %}
 <style>
@@ -9,7 +10,7 @@
         flex-wrap: wrap;
         text-align: center;
 
-        
+
     }
 
     .left {
@@ -22,56 +23,279 @@
 </style>
 {% endblock head %}
 
-{% block content %}
-<div>
-    <h1>Home</h1>
-    <p>Welcome to <b>Online Store</b>.</p>
-    <br>
 
-    {% if user.is_authenticated %}
-    <div class="row box-element1 dark">
-        <div class="text-right font-weight-bold mr-3">
-            <p>Username:</p>
-            <p>Email:</p>
-            <p>First Name:</p>
-            <p>Last Name:</p>
-            <p style="margin-bottom: 26px">Image:</p>
-            <p>Day of Birth:</p>
-            <p>Country:</p>
-            <p>City:</p>
-            <p>Zip Code:</p>
-            <p>Address1:</p>
-            <p>Address2:</p>
-            <p>Phone:</p>
-            <p>Additional Information:</p>
+
+
+<!-- ----------------------------------------------------------------------------------- -->
+<!-- Navigation -->
+<!-- ----------------------------------------------------------------------------------- -->
+{% block navigation %}
+<div class="header">
+{% endblock navigation %}
+    {% block home %}
+    <div class="row">
+        <div class="col-2">
+            <h1>Give Your Workout <br> A New Style!</h1>
+            <p>Success isn't always about greatness. It's about consistency. Consistent <br> hard work gains
+                success. Greatness will come.</p>
+            <a href="{% url 'store' %}" class="btn">Explore Now &#8594;</a>
         </div>
-        <div class="ml-3">
-            <p>{{ user.username }}</p>
-            <p>{{ user.email }}</p>
-            {% if user.first_name %}<p>{{ user.first_name }}</p>{% else %} <p>-</p> {% endif %}
-            {% if user.last_name %}<p>{{ user.last_name }}</p>{% else %} <p>-</p> {% endif %}
-            <p><img id="profile-icon" src="{{ user.profile.image.url }}"></p>
-            {% if user.date_of_birth %}<p>{{ user.date_of_birth }}</p>{% else %} <p>-</p> {% endif %}
-            <p>{{ user.profile.get_country_display }} ({{ user.profile.country }})</p>
-            <p>{{ user.profile.city }}</p>
-            <p>{{ user.profile.zip_code }}</p>
-            <p>{{ user.profile.address1 }}</p>
-            {% if user.profile.address2 %}<p>{{ user.profile.address2 }}</p>{% else %} <p>-</p> {% endif %}
-            {% if user.profile.phone %}<p>{{ user.profile.phone }}</p>{% else %} <p>-</p> {% endif %}
-            {% if user.profile.additional_information %}<p>{{ user.profile.additional_information }}</p>{% else %} <p>-</p> {% endif %}
+        <div class="col-2">
+            <img src="{% static 'images/image1.png' %}">
         </div>
     </div>
-    {% endif %}
+    {% endblock home %}
 
-    {{ user.profile.first_name }}
-    {{ user.profile.last_name }}
-    {{ user.profile.email }}
 
-</div>
-{% endblock content %}
+{% block home-logo %}
+<img src="{% static 'images/logo2.png' %}" width="150px">
+{% endblock home-logo %}
 
-{% block script %}
-<script>
-     document.querySelector('#home').classList.add('active');
-</script>
-{% endblock script %}
+
+
+
+
+
+    {% block content %}
+    {% comment %}
+    <div>
+        {% if user.is_authenticated %}
+        <div class="row box-element1 dark">
+            <div class="text-right font-weight-bold mr-3">
+                <p>Username:</p>
+                <p>Email:</p>
+                <p>First Name:</p>
+                <p>Last Name:</p>
+                <p style="margin-bottom: 26px">Image:</p>
+                <p>Day of Birth:</p>
+                <p>Country:</p>
+                <p>City:</p>
+                <p>Zip Code:</p>
+                <p>Address1:</p>
+                <p>Address2:</p>
+                <p>Phone:</p>
+                <p>Additional Information:</p>
+            </div>
+            <div class="ml-3">
+                <p>{{ user.username }}</p>
+                <p>{{ user.email }}</p>
+                {% if user.first_name %}<p>{{ user.first_name }}</p>{% else %} <p>-</p> {% endif %}
+                {% if user.last_name %}<p>{{ user.last_name }}</p>{% else %} <p>-</p> {% endif %}
+                <p><img id="profile-icon" src="{{ user.profile.image.url }}"></p>
+                {% if user.date_of_birth %}<p>{{ user.date_of_birth }}</p>{% else %} <p>-</p> {% endif %}
+                <p>{{ user.profile.get_country_display }} ({{ user.profile.country }})</p>
+                <p>{{ user.profile.city }}</p>
+                <p>{{ user.profile.zip_code }}</p>
+                <p>{{ user.profile.address1 }}</p>
+                {% if user.profile.address2 %}<p>{{ user.profile.address2 }}</p>{% else %} <p>-</p> {% endif %}
+                {% if user.profile.phone %}<p>{{ user.profile.phone }}</p>{% else %} <p>-</p> {% endif %}
+                {% if user.profile.additional_information %}<p>{{ user.profile.additional_information }}</p>{% else %}
+                <p>-
+                </p> {% endif %}
+            </div>
+        </div>
+        {% endif %}
+
+        {{ user.profile.first_name }}
+        {{ user.profile.last_name }}
+        {{ user.profile.email }}
+    </div>
+    {% endcomment %}
+
+
+
+
+    <!-- ----------------------------------------------------------------------------------- -->
+    <!-- Featured Categories -->
+    <!-- ----------------------------------------------------------------------------------- -->
+
+    <div class="categories">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-3">
+                    <img src="{% static 'images/category-1.jpg' %}">
+                </div>
+                <div class="col-3">
+                    <img src="{% static 'images/category-2.jpg' %}">
+                </div>
+                <div class="col-3">
+                    <img src="{% static 'images/category-3.jpg' %}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ----------------------------------------------------------------------------------- -->
+    <!-- featured products -->
+    <!-- ----------------------------------------------------------------------------------- -->
+
+    <div class="small-container">
+
+        <h2 class="title">Featured Product</h2>
+        <div class="row">
+            {% for product in products %}
+            {% if product.featured %}
+            <div class="col-4">
+                <a href="{% url 'product_detail' product.pk %}">
+                    <img src="{{ product.imageURL }}">
+                </a>
+                <a href="{% url 'product_detail' product.pk %}">
+                    <h4>{{ product.name }}</h4>
+                </a>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <p>${{ product.price }}</p>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <h2 class="title">Latest Products</h2>
+        <div class="row">
+            {% for product in products reversed %}
+            {% if forloop.counter <= 8 %}
+            <div class="col-4">
+
+                <a href="{% url 'product_detail' product.pk %}">
+                    <img src="{{ product.imageURL }}">
+                </a>
+                <a href="{% url 'product_detail' product.pk %}">
+                    <h4>{{ product.name }}</h4>
+                </a>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <p>$ {{ product.price }}</p>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+    </div>
+
+    <!-- ----------------------------------------------------------------------------------- -->
+    <!-- offer-->
+    <!-- ----------------------------------------------------------------------------------- -->
+
+    <div class="offer">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-2">
+                    <img src="{% static 'images/exclusive.png' %}" class="offer-img">
+                </div>
+                <div class="col-2">
+                    <p>Exclusively Availble on RedStore</p>
+                    <h1>Smart Band 4</h1>
+                    <small>The Mi Smart Band 4 features a 39.9% larger (than Mi Band 3) AMOLED color full-touch display
+                        with adjustable brightness, so everything is clear as can be.</small>
+                    <br>
+                    <a href="" class="btn">Buy Now &#8594;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ----------------------------------------------------------------------------------- -->
+    <!-- testimonial-->
+    <!-- ----------------------------------------------------------------------------------- -->
+
+    <div class="testimonial">
+        <div class="small-container">
+            <div class="row">
+
+                <div class="col-3">
+                    <i class="fa fa-quote-left"></i>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever.</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <img src="{% static 'images/user-1.jpg' %}" alt="">
+                    <h3>PhiVa Lo</h3>
+                </div>
+                <div class="col-3">
+                    <i class="fa fa-quote-left"></i>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever.</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <img src="{% static 'images/user-2.jpg' %}" alt="">
+                    <h3>Bhuwan Poudel</h3>
+                </div>
+                <div class="col-3">
+                    <i class="fa fa-quote-left"></i>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever.</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <img src="{% static 'images/user-3.jpg' %}" alt="">
+                    <h3>Panda Man</h3>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ----------------------------------------------------------------------------------- -->
+    <!-- brands -->
+    <!-- ----------------------------------------------------------------------------------- -->
+
+    <div class="brands">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-5">
+                    <img src="{% static 'images/logo-godrej.png' %}">
+                </div>
+                <div class="col-5">
+                    <img src="{% static 'images/logo-oppo.png' %}">
+                </div>
+                <div class="col-5">
+                    <img src="{% static 'images/logo-coca-cola.png' %}">
+                </div>
+                <div class="col-5">
+                    <img src="{% static 'images/logo-paypal.png' %}">
+                </div>
+                <div class="col-5">
+                    <img src="{% static 'images/logo-philips.png' %}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock content %}
+
+
+    <!-- ----------------------------------------------------------------------------------- -->
+    <!-- JavaScripts -->
+    <!-- ----------------------------------------------------------------------------------- -->
+
+    {% block script %}
+    <script>
+        document.querySelector('#home').classList.add('active');
+    </script>
+    {% endblock script %}
