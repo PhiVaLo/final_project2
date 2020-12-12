@@ -11,10 +11,11 @@
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
     <!-- Bootstrap - https://www.bootstrapcdn.com/ -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    {% comment %} <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> {% endcomment %}
 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/store.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'css/store.css' %}">  {% endcomment %}
+    {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">  {% endcomment %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles_new.css' %}">
 
     <title>Online Store</title>
 
@@ -79,9 +80,10 @@
 </head>
 
 <body>
-    <!-- -------------------------------------------------------------------------------------- -->
-
-
+    <!-- ----------------------------------------------------------------------------------- -->
+    <!-- Navigation -->
+    <!-- ----------------------------------------------------------------------------------- -->
+    {% comment %}
     <nav class="navbar navbar-expand-lg navbar-dark dark">
         <a class="navbar-brand" href="{% url 'home' %}"> <i class="fab fa-drupal logo"></i> </a>
 
@@ -104,18 +106,22 @@
 
             {% if user.is_authenticated %}
             <ul class="navbar-nav ml-auto">
-                <label for="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <label for="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
                     <li class="mr-3 pt-1 green">{{ user.get_username }} ({{ user.profile.country }})</li>
                 </label>
                 <li class="dropdown mr-3">
-                    <a class="profile" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="profile" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
                         <img id="profile-icon" src="{{ user.profile.image.url }}" alt="">
                     </a>
                     <div class="dropdown-menu profile-dropdown" aria-labelledby="navbarDropdown">
                         <a class="" href="{% url 'profile' %}"><i class="fas fa-id-badge"></i> Profile</a>
-                        <a class="" href="{% url 'logout' %}?next={{ request.path }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        <a class="" href="{% url 'logout' %}?next={{ request.path }}"><i
+                                class="fas fa-sign-out-alt"></i> Logout</a>
                         <div class="dropdown-divider"></div>
-                        <a class="red" href="{% url 'order_history' %}"><i class="fas fa-history"></i> Order History </a>
+                        <a class="red" href="{% url 'order_history' %}"><i class="fas fa-history"></i> Order History
+                        </a>
                         <div class="dropdown-divider"></div>
                         <a class="" href="{% url 'store' %}"><i class="fas fa-cart-arrow-down"></i> Store </a>
                         <a class="" href="{% url 'cart' %}"><i class="fas fa-shopping-basket"></i> Cart </a>
@@ -125,20 +131,23 @@
             </ul>
             {% else %}
             <ul class="navbar-nav ml-auto">
-                <label for="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <label for="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
                     <li class="mr-3 pt-1 red">Anonymous User</li>
                 </label>
                 <li class="dropdown mr-3">
-                    <a class="profile" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="profile" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
                         <img id="profile-icon" src="/media/default-profile.jpg">
                     </a>
                     <div class="dropdown-menu profile-dropdown" aria-labelledby="navbarDropdown">
-                        <a class="" href="{% url 'login' %}?next={{ request.path }}"><i class="fas fa-sign-in-alt"></i>Login</a>
+                        <a class="" href="{% url 'login' %}?next={{ request.path }}"><i
+                                class="fas fa-sign-in-alt"></i>Login</a>
                         <a class="" href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Sign Up</a>
                         <div class="dropdown-divider"></div>
                         <a class="" href="{% url 'store' %}"><i class="fas fa-cart-arrow-down"></i> Store </a>
                         <a class="" href="{% url 'cart' %}"><i class="fas fa-shopping-basket"></i> Cart </a>
-                        <a class="" href="{% url 'checkout' %}"><i class="fas fa-credit-card"></i> Checkout </a>                        
+                        <a class="" href="{% url 'checkout' %}"><i class="fas fa-credit-card"></i> Checkout </a>
                     </div>
                 </li>
             </ul>
@@ -154,7 +163,145 @@
     {% block search-bar %}{% endblock search-bar %}
 
 
-    <div class="my-container">
+    {% endcomment %}
+
+
+
+
+
+    <!-- ----------------------------------------------------------------------------------- -->
+    <!-- Navigation -->
+    <!-- ----------------------------------------------------------------------------------- -->
+    {% block navigation %}
+    <div id="base-header">
+        {% endblock navigation %}
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="{% url 'home' %}">
+                        {% block home-logo %}
+                        <img src="{% static 'images/logo.png' %}" width="150px">
+                        {% endblock home-logo %}
+                    </a>
+                </div>
+                <nav>
+                    <ul id="MenuItems">
+                        <li id="home"><a href="{% url 'home' %}">Home</a></li>
+                        <li id="store"><a href="{% url 'store' %}">Products</a></li>
+                        <li><a href="">About</a></li>
+                        <li><a href="">Contact</a></li>
+                        <li><a href="account.html">Account</a></li>
+                    </ul>
+                </nav>
+
+
+
+
+                {% if user.is_authenticated %}
+                <ul class="navbar-nav ml-auto">
+                    <label for="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <li class="mr-3 pt-1 green">{{ user.get_username }} ({{ user.profile.country }})</li>
+                    </label>
+                    <li class="dropdown mr-3">
+                        <a class="profile" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <img id="profile-icon" src="{{ user.profile.image.url }}" alt="">
+                        </a>
+                        <div class="dropdown-menu profile-dropdown" aria-labelledby="navbarDropdown">
+                            <a class="" href="{% url 'profile' %}"><i class="fas fa-id-badge"></i> Profile</a>
+                            <a class="" href="{% url 'logout' %}?next={{ request.path }}"><i
+                                    class="fas fa-sign-out-alt"></i> Logout</a>
+                            <div class="dropdown-divider"></div>
+                            <hr class="line">
+                            <a class="red" href="{% url 'order_history' %}"><i class="fas fa-history"></i> Order History
+                            </a>
+                            <hr class="line">
+                            <a class="" href="{% url 'store' %}"><i class="fas fa-cart-arrow-down"></i> Store </a>
+                            <a class="" href="{% url 'cart' %}"><i class="fas fa-shopping-basket"></i> Cart </a>
+                            <a class="" href="{% url 'checkout' %}"><i class="fas fa-credit-card"></i> Checkout </a>
+                        </div>
+                    </li>
+                </ul>
+                {% else %}
+                <ul class="navbar-nav ml-auto">
+                    <label for="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <li class="mr-3 pt-1 red">Anonymous User</li>
+                    </label>
+                    <li class="dropdown mr-3">
+                        <a class="profile" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <img id="profile-icon" src="/media/default-profile.jpg">
+                        </a>
+                        <div class="dropdown-menu profile-dropdown" aria-labelledby="navbarDropdown">
+                            <a class="" href="{% url 'login' %}?next={{ request.path }}"><i
+                                    class="fas fa-sign-in-alt"></i> Login</a>
+                            <a class="" href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Sign Up</a>
+                            <hr class="line">
+                            <a class="" href="{% url 'store' %}"><i class="fas fa-cart-arrow-down"></i> Store </a>
+                            <a class="" href="{% url 'cart' %}"><i class="fas fa-shopping-basket"></i> Cart </a>
+                            <a class="" href="{% url 'checkout' %}"><i class="fas fa-credit-card"></i> Checkout </a>
+                        </div>
+                    </li>
+                </ul>
+
+                {% endif %}
+
+
+
+
+
+
+
+                <a href="{% url 'cart' %}"><i class="fas fa-cart-arrow-down"></i></a>
+
+                {% comment %} <a href="{% url 'cart' %}"><i class="fas fa-cart-arrow-down"></i></a> {% endcomment %}
+                <p id="cart-total">{{ cartItems }}</p>
+
+                {% comment %} <img src="{% static 'images/menu.png' %}" class="menu-icon" onclick="menutoggle()"> {% endcomment %}
+                <div class="menu-icon" onclick="menutoggle()">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+
+            {% block home %}{% endblock home %}
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="my-container__">
         {% if messages %}
         {% for message in messages %}
         <div class="alert alert-{{ message.tags }}">
@@ -168,7 +315,52 @@
     </div>
 
 
-    <a class="django-admin" href="http://localhost:8000/admin" target="_blank">Django Admin</a>
+    {% comment %} <a class="django-admin" href="http://localhost:8000/admin" target="_blank">Django Admin</a>
+    {% endcomment %}
+
+
+    <!-- ----------------------------------------------------------------------------------- -->
+    <!-- footer -->
+    <!-- ----------------------------------------------------------------------------------- -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <p>Download App for Android and iOS mobile phone.</p>
+                    <div class="app-logo">
+                        <img src="{% static 'images/play-store.png' %}">
+                        <img src="{% static 'images/app-store.png' %}">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <img src="{% static 'images/logo.png' %}">
+                    <p>Our Purpose Is To Substainably Make the Pleasure and Benefits of Sports Accessible to the Many.
+                    </p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li>Coupons</li>
+                        <li>Blog Post</li>
+                        <li>Return Policy</li>
+                        <li>Join Affiliate</li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow us</h3>
+                    <ul>
+                        <li><i class="fab fa-facebook"></i> Facebook</li>
+                        <li><i class="fab fa-twitter"></i> Twitter</li>
+                        <li><i class="fab fa-instagram"></i> Instagram</li>
+                        <li><i class="fab fa-youtube"></i> YouTube</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright 2020 - SDA Final Project</p>
+        </div>
+    </div>
 
 
     <!-- -------------------------------------------------------------------------------------- -->
@@ -184,6 +376,19 @@
     </script>
 
     <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+
+    <script>
+        let MenuItems = document.getElementById("MenuItems");
+        MenuItems.style.maxHeight = "0px";
+
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == "0px") {
+                MenuItems.style.maxHeight = "200px";
+            } else {
+                MenuItems.style.maxHeight = "0px";
+            }
+        }
+    </script>
 
     {% block script %}{% endblock script %}
 

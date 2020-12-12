@@ -58,11 +58,11 @@
 </div> {% endcomment %}
 
 
-
+{% comment %}
 
 <div class="fflex">
     <div>
-        <img class="product-img" src="{{ product.imageURL }}" alt="???">
+        <img class="product-img" src="{{ product.imageURL }}">
     </div>
     <div class="ml-4">
         <h3>{{ product.name }}</h3>
@@ -78,44 +78,136 @@
             <div class="form-field">
                 <input class="form-control" type="text" name="size" placeholder="size">
             </div>
-            
+
             <button data-product={{ product.id }} data-action="add"
                 class="btn btn-success btn-block mt-2 add-btn update-cart ">Add to Cart </button>
         </form>
-
-
-
-
-
-
-
-
-
 
     </div>
 </div>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="text-center mt-5">
     <a class="btn btn-primary rounded text-uppercase text-center" href="{% url 'store' %}"><span
             style="margin: 0 15px">&#x2190;</span> Back to products</a>
+</div> {% endcomment %}
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =================================================================================== -->
+<!-- single product details -->
+<!-- =================================================================================== -->
+
+<div class="small-container single-product">
+    <div class="row">
+        <div class="col-2">
+            <img id="product-img" src="{{ product.imageURL }}" width="100%">
+
+            <div class="small-img-row">
+                {% if product.image_subs1 %}
+                <div class="small-img-col">
+                    <img class="small-img" src="{{ product.image_subs1.url }}" width="100%">
+                </div>
+                {% endif %}
+                {% if product.image_subs2 %}
+                <div class="small-img-col">
+                    <img class="small-img" src="{{ product.image_subs2.url }}" width="100%">
+                </div>
+                {% endif %}
+                {% if product.image_subs3 %}
+                <div class="small-img-col">
+                    <img class="small-img" src="{{ product.image_subs3.url }}" width="100%">
+                </div>
+                {% endif %}
+                {% if product.image_subs4 %}
+                <div class="small-img-col">
+                    <img class="small-img" src="{{ product.image_subs4.url }}" width="100%">
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+        <div class="col-2">
+            <p>Home / T-Shirt</p>
+            <h1>{{ product.name }}</h1>
+            <h4>${{ product.price }}</h4>
+            <select>
+                <option>Select Size</option>
+                <option>XXL</option>
+                <option>XL</option>
+                <option>Large</option>
+                <option>Medium</option>
+                <option>Small</option>
+            </select>
+            <input type="number" value=1 min="1">
+            {% comment %} <a href="#" class="btn">Add To Cart</a> {% endcomment %}
+            <a href="#" data-product={{ product.id }} data-action="add" class="btn update-cart">Add To Cart</a>
+
+            {% comment %} <button data-product={{ product.id }} data-action="add" class="update-cart">+</button> {% endcomment %}
+
+            <h3>Product Details <i class="fa fa-indent"></i></h3>
+            <br>
+            <p>Give your summer wardrobe a style upgrade with the HRX Men's Active T-shirt. Team it with a pair of
+                shorts for your morning workout or a denims for an evening out with the guys.</p>
+        </div>
+    </div>
 </div>
+
+<!-- title -->
+<div class="small-container">
+    <div class="row row-2">
+        <h2>Related Products</h2>
+        <a href="{% url 'store' %}">
+        View more
+        </a>
+    </div>
+</div>
+
+<!-- products -->
+<div class="small-container">
+
+    <div class="row">
+        <div class="col-4">
+            <img src="{{ product.imageURL }}">
+            <h4>TEST</h4>
+            <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+            </div>
+            <p>$99.00</p>
+            <p>{{ category.name }}</p>
+        </div>
+    </div>
+
+</div>
+
+
+
 {% endblock content %}
+
+{% block script %}
+<!-- js for product gallery -->
+<script>
+    let product_img = document.getElementById("product-img");
+    let small_img = document.getElementsByClassName("small-img");
+
+    for (let i = 0; i < 4; i++) {
+        small_img[i].onclick = function () {
+            product_img.src = small_img[i].src;
+        }
+    }
+</script>
+{% endblock script %}

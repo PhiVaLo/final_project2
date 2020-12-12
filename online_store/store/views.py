@@ -20,6 +20,7 @@ from users.models import Profile
 from .models import (
     # Customer,
     Product,
+    Category,
     Order,
     OrderItem,
     ShippingAddress,
@@ -33,7 +34,8 @@ def home(request):
     data = cartData(request)
     cartItems = data['cartItems']
 
-    context = {'cartItems': cartItems}
+    products = Product.objects.all()
+    context = {'products': products, 'cartItems': cartItems}
     return render(request, 'store/home.html', context)
 
 # =====================================================================================
@@ -43,7 +45,8 @@ def store(request):
     cartItems = data['cartItems']
 
     products = Product.objects.all()
-    context = {'products': products, 'cartItems': cartItems}
+    categories = Category.objects.all()
+    context = {'products': products, 'categories': categories, 'cartItems': cartItems}
     return render(request, 'store/store.html', context)
 
 # =====================================================================================
@@ -74,7 +77,7 @@ def cart(request):
 
 def checkout(request):
     data = cartData(request)
-    
+
     items = data['items']
     order = data['order']
     cartItems = data['cartItems']
@@ -86,7 +89,7 @@ def checkout(request):
 
 def order_history(request):
     data = cartData(request)
-    
+
     items = data['items']
     order = data['order']
     cartItems = data['cartItems']
@@ -136,7 +139,7 @@ def update_item(request):
 
     if action == 'add':
         order_item.quantity = (order_item.quantity + 1)
-    elif action == 'remove':
+    elif action == 'remove' and order_item.quantity > 1:
         order_item.quantity = (order_item.quantity - 1)
     elif action =='delete':
         order_item.quantity = 0

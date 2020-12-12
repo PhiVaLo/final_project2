@@ -95,9 +95,14 @@ def guestOrder(request, data):
     # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     # Part 4 - 52:100
     # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    profile, created = Profile.objects.get_or_create(
+    user, created = User.objects.get_or_create(
+        username=first_name,
         email=email,
+        first_name=first_name,
+        last_name=last_name,
     )
+    profile, created = Profile.objects.get_or_create(user=user)
+    
     profile.first_name = first_name
     profile.last_name = last_name
     profile.save()
@@ -116,5 +121,5 @@ def guestOrder(request, data):
         quantity=item['quantity'],
     )
 
-    # return profile, order
-    return order
+    return profile, order
+    # return order
