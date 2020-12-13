@@ -23,7 +23,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     # digital = models.BooleanField(default=False, null=True, blank=False)
     image =  models.ImageField(default='default-product.jpg', upload_to='product_images', null=True, blank=True)
-    description = models.CharField(max_length=2000, null=True, blank=True)
+    description = models.CharField(default='No description', max_length=2000, null=True, blank=True)
 
     category = models.IntegerField(null=True, blank=True)
     featured = models.BooleanField(null=True, blank=True, default=False)

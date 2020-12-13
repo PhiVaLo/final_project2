@@ -97,7 +97,7 @@
                         </div>
                     </div>
                 </td>
-                <td><input type="number" value="{{ item.quantity }}" disabled>
+                <td><input type="number" value="{{ item.quantity }}" disabled style="color: black">
                     <div class="quantity">
                         <img data-product={{ item.product.id }} data-action="add" class="chg-quantity update-cart"
                             src="{% static 'images/arrow-up.png' %}">
@@ -126,8 +126,8 @@
     </div>
 
     <div class="row-cart">
-        <a class="btn btn-uniform" href="{% url 'store' %}">&#x2190; Back</a>
-        <a class="btn btn-uniform" href="{% url 'checkout' %}">Checkout &#x2192;</a>
+        <a class="btn-1 btn-uniform" href="{% url 'store' %}">&#x2190; Back</a>
+        <a class="btn-1 btn-uniform" href="{% url 'checkout' %}">Checkout &#x2192;</a>
 
     </div>
 
