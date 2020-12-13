@@ -24,7 +24,6 @@
         color: black;
     }
 
- {% endcomment %}
 
     .store-flex {
         display: flex;
@@ -58,7 +57,25 @@
         bottom: 0px;
         left: 10vh;
     }
+ {% endcomment %}
 </style>
+
+
+<style>
+    .test-btn {
+        width:20px; 
+        height: 20px; 
+        background: crimson; 
+        color: white;
+        opacity: 0.8;
+        border-radius: 3px;
+        transition: all 0.3s;
+    }
+    .test-btn:hover {
+        opacity: 1;
+    }
+</style>
+
 {% endblock head %}
 
 
@@ -260,10 +277,7 @@
 
 
             <!-- buttons to be deleted / added in detail_view -->
-            <div class=" text-center">
-                <button data-product={{ product.id }} data-action="add" class="update-cart">+</button>
-                <a class="" href="{% url 'product_detail' product.pk %}">?</a>
-            </div>
+            <button data-product={{ product.id }} data-action="add" class="update-cart test-btn">+</button>
 
 
         </div>

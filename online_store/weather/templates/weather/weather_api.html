@@ -1,5 +1,8 @@
 {% extends 'store/base.html' %}
-
+{% block head0 %}
+<!-- Bootstrap - https://www.bootstrapcdn.com/ -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+{% endblock head0 %}
 {% block head %}
 <style>
     .flexbox {
@@ -13,92 +16,113 @@
 {% endblock head %}
 
 {% block content %}
-<div style="text-align: center">
-    <h1>Weather Forecast</h1>
-    <form method="GET" action="">
-        <label for="city"></label>
-        <input class="form-control" type="text" name="city" id="city" placeholder="city..."
-            value="{{ request.GET.city }}" style="width: 300px; display: inline-block ">
-        <input id="btn" class="btn btn-outline-primary" type="submit" value="Submit">
-    </form>
-</div>
 
-<br>
+<div class="">
+    <div class="container" style="height: 80vh">
+        <div class="">
 
-<ul>
-    <li>This APP is fetching weather-data from Google.</li>
-    <li>Input a city and the search function will try to match the city as close as possible.</li>
-    <li>Inserting a country name will redirect the location to that country's capital.</li>
-</ul>
 
-{% if unknown_location %}
-<p>No match found for <b style="color: crimson">{{ unknown_location.input }}</b>, please try again!</p>
-{% endif %}
 
-{% if weather %}
-<div class="box-element1 box-element3 dark">
-    <h2 class="center border-bottom mb-4 pb-2">{{ weather.region }}</h2>
 
-    <div class="flexbox">
-        <div>
-            <h4>{{ weather.daytime }}</h5>
-                <h4>{{ weather.status }}</h5>
-                    <br>
-                    <h6>Precipitation: {{ weather.precipitation }}</h6>
-                    <h6>Humidity: {{ weather.humidity }}</h6>
-                    <h6>Wind: {{ weather.wind }}</h6>
-        </div>
-        <div>
-            <h2 class="m-4 p-3 box-wrapper yellow"> <img src="{{ weather.logo }}"> {{ weather.temp }} °C</h2>
+            <div style="text-align: center">
+                <h1 class="mt-3">Weather Forecast</h1>
+                <form method="GET" action="">
+                    <label for="city"></label>
+                    <input class="form-control" type="text" name="city" id="city" placeholder="city..."
+                        value="{{ request.GET.city }}" style="width: 300px; display: inline-block ">
+                    <input id="btn" class="btn btn-outline-primary" type="submit" value="Submit">
+                </form>
+            </div>
+
+            <br><br>
+
+            <ul>
+                <li>This APP is fetching weather-data from Google.</li>
+                <li>Input a city and the search function will try to match the city as close as possible.</li>
+                <li>Inserting a country name will redirect the location to that country's capital.</li>
+            </ul>
+
+            {% if unknown_location %}
+            <p>No match found for <b style="color: crimson">{{ unknown_location.input }}</b>, please try again!</p>
+            {% endif %}
+
+            {% if weather %}
+
+            <div class="box-element1 box-element3 dark">
+                <h2 class="center border-bottom mb-4 pb-2">{{ weather.region }}</h2>
+
+                <div class="flexbox">
+                    <div>
+                        <h4>{{ weather.daytime }}</h5>
+                            <h4>{{ weather.status }}</h5>
+                                <br>
+                                <h6>Precipitation: {{ weather.precipitation }}</h6>
+                                <h6>Humidity: {{ weather.humidity }}</h6>
+                                <h6>Wind: {{ weather.wind }}</h6>
+                    </div>
+                    <div>
+                        <h2 class="m-4 p-3 box-wrapper yellow"> <img src="{{ weather.logo }}"> {{ weather.temp }} °C
+                        </h2>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="flexbox">
+                    <div class="box-wrapper">
+                        <h5>{{ weather.day0 }}</h5>
+                        <img src="{{ weather.logo0 }}">
+                        <p>{{ weather.min_temp0 }}° {{ weather.max_temp0 }}°</h5>
+                    </div>
+                    <div class="box-wrapper">
+                        <h5>{{ weather.day1 }}</h5>
+                        <img src="{{ weather.logo1 }}">
+                        <p>{{ weather.min_temp1 }}° {{ weather.max_temp1 }}°</h5>
+                    </div>
+                    <div class="box-wrapper">
+                        <h5>{{ weather.day2 }}</h5>
+                        <img src="{{ weather.logo2 }}">
+                        <p>{{ weather.min_temp2 }}° {{ weather.max_temp2 }}°</h5>
+                    </div>
+                    <div class="box-wrapper">
+                        <h5>{{ weather.day3 }}</h5>
+                        <img src="{{ weather.logo3 }}">
+                        <p>{{ weather.min_temp3 }}° {{ weather.max_temp3 }}°</h5>
+                    </div>
+                    <div class="box-wrapper">
+                        <h5>{{ weather.day4 }}</h5>
+                        <img src="{{ weather.logo4 }}">
+                        <p>{{ weather.min_temp4 }}° {{ weather.max_temp4 }}°</h5>
+                    </div>
+                    <div class="box-wrapper">
+                        <h5>{{ weather.day5 }}</h5>
+                        <img src="{{ weather.logo5 }}">
+                        <p>{{ weather.min_temp5 }}° {{ weather.max_temp5 }}°</h5>
+                    </div>
+                    <div class="box-wrapper">
+                        <h5>{{ weather.day6 }}</h5>
+                        <img src="{{ weather.logo6 }}">
+                        <p>{{ weather.min_temp6 }}° {{ weather.max_temp6 }}°</h5>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+
+
+
+
         </div>
     </div>
-
-    <br>
-
-    <div class="flexbox">
-        <div class="box-wrapper">
-            <h5>{{ weather.day0 }}</h5>
-            <img src="{{ weather.logo0 }}">
-            <p>{{ weather.min_temp0 }}° {{ weather.max_temp0 }}°</h5>
-        </div>
-        <div class="box-wrapper">
-            <h5>{{ weather.day1 }}</h5>
-            <img src="{{ weather.logo1 }}">
-            <p>{{ weather.min_temp1 }}° {{ weather.max_temp1 }}°</h5>
-        </div>
-        <div class="box-wrapper">
-            <h5>{{ weather.day2 }}</h5>
-            <img src="{{ weather.logo2 }}">
-            <p>{{ weather.min_temp2 }}° {{ weather.max_temp2 }}°</h5>
-        </div>
-        <div class="box-wrapper">
-            <h5>{{ weather.day3 }}</h5>
-            <img src="{{ weather.logo3 }}">
-            <p>{{ weather.min_temp3 }}° {{ weather.max_temp3 }}°</h5>
-        </div>
-        <div class="box-wrapper">
-            <h5>{{ weather.day4 }}</h5>
-            <img src="{{ weather.logo4 }}">
-            <p>{{ weather.min_temp4 }}° {{ weather.max_temp4 }}°</h5>
-        </div>
-        <div class="box-wrapper">
-            <h5>{{ weather.day5 }}</h5>
-            <img src="{{ weather.logo5 }}">
-            <p>{{ weather.min_temp5 }}° {{ weather.max_temp5 }}°</h5>
-        </div>
-        <div class="box-wrapper">
-            <h5>{{ weather.day6 }}</h5>
-            <img src="{{ weather.logo6 }}">
-            <p>{{ weather.min_temp6 }}° {{ weather.max_temp6 }}°</h5>
-        </div>
-    </div>
 </div>
-{% endif %}
+
+
+
 
 {% endblock content %}
 
 {% block script %}
 <script>
-     document.querySelector('#weather').classList.add('active');
+    document.querySelector('#weather').classList.add('active');
 </script>
 {% endblock script %}

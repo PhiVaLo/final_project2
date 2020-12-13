@@ -138,7 +138,7 @@
 
         </div>
         <div class="col-2">
-            <p>Home / T-Shirt</p>
+            <p>Category: {{ product.category }}</p>
             <h1>{{ product.name }}</h1>
             <h4>${{ product.price }}</h4>
             <select>
@@ -150,15 +150,11 @@
                 <option>Small</option>
             </select>
             <input type="number" value=1 min="1">
-            {% comment %} <a href="#" class="btn">Add To Cart</a> {% endcomment %}
-            <a href="#" data-product={{ product.id }} data-action="add" class="btn update-cart">Add To Cart</a>
-
-            {% comment %} <button data-product={{ product.id }} data-action="add" class="update-cart">+</button> {% endcomment %}
+            <a href="#" data-product={{ product.id }} data-action="add" class="btn-1 update-cart">Add To Cart</a>
 
             <h3>Product Details <i class="fa fa-indent"></i></h3>
             <br>
-            <p>Give your summer wardrobe a style upgrade with the HRX Men's Active T-shirt. Team it with a pair of
-                shorts for your morning workout or a denims for an evening out with the guys.</p>
+            <p>{{ product.description }}</p>
         </div>
     </div>
 </div>
@@ -187,7 +183,7 @@
                 <i class="fas fa-star"></i>
                 <i class="far fa-star"></i>
             </div>
-            <p>$99.00</p>
+            <p>${{ product.price }}</p>
             <p>{{ category.name }}</p>
         </div>
     </div>

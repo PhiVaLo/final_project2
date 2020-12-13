@@ -1,25 +1,55 @@
 {% extends 'store/base.html' %}
 {% load crispy_forms_tags %}
+{% load static %}
+
+{% block head0 %}
+<!-- Bootstrap - https://www.bootstrapcdn.com/ -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+{% endblock head0 %}
+{% block head %}
+<style>
+    @media only screen and (max-width: 950px) {
+        nav ul {
+            width: 107%;
+            top: 108px;
+            left: -25px;
+        }
+    }
+</style>
+{% endblock head %}
 
 {% block content %}
-<div class="box-element1 box-element2 dark">
-    <form method="post" action="{% url 'login' %}">
-        {% csrf_token %}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Login</legend>
-            {{ form|crispy }}
-        </fieldset>
+<div class="account-page">
+    <div class="container">
+        <div class="row">
 
-        <div class="btn-container">
-            <input class="btn btn-primary" type="submit" value="login">
-            <input type="hidden" name="next" value="{{ next }}">
+            <div class="box-element1 box-element2 dark2">
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">Login</legend>
+                        {{ form|crispy }}
+                    </fieldset>
+
+                    <div class="btn-container">
+                        <input class="btn btn-primary" type="submit" value="login">
+                        <input type="hidden" name="next" value="{{ next }}">
+                    </div>
+                </form>
+
+                <div class="border-top pt-3 mt-3">
+                    <small><a class="text-muted" href="{% url 'password_reset' %}">Forgot Password?</a> </small>
+                    <br>
+                    <small><a class="text-muted" href="{% url 'register' %}">Sign Up</a> </small>
+                </div>
+            </div>
+
         </div>
-    </form>
-
-    <div class="border-top pt-3 mt-3">
-        <small><a class="text-muted" href="{% url 'password_reset' %}">Forgot Password?</a> </small>
-        <br>
-        <small><a class="text-muted" href="{% url 'register' %}">Sign Up</a> </small>
     </div>
 </div>
+
+
+
+
+
 {% endblock content %}
