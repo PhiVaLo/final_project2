@@ -1,3 +1,5 @@
+from django.utils import timezone
+
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
@@ -79,7 +81,9 @@ class Category(models.Model):
 class Order(models.Model):
     # customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)  # if customer is deleted - don't delete the order, just set the customer value to null
     profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)  # if customer is deleted - don't delete the order, just set the customer value to null
-    date_order = models.DateTimeField(auto_now_add=True)  # then we can change the value whenever that order is set to complete
+    date_order = models.DateTimeField(auto_now=True)  # then we can change the value whenever that order is set to complete
+    # date_order = models.DateTimeField(auto_now_add=True)  # then we can change the value whenever that order is set to complete
+    # date_order = models.DateTimeField(default=timezone.now)  # then we can change the value whenever that order is set to complete
     complete = models.BooleanField(default=False, null=True, blank=False)
     transaction_id = models.CharField(max_length=200, null=True)
 

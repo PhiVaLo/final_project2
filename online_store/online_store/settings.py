@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'store.apps.StoreConfig',
     'weather.apps.WeatherConfig',
     'users.apps.UsersConfig',
-    
+
     'crispy_forms',
     'django_countries',
 
