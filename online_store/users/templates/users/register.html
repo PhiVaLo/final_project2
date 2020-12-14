@@ -2,12 +2,6 @@
 {% load crispy_forms_tags %}
 {% load static %}
 
-
-{% block head0 %}
-<!-- Bootstrap - https://www.bootstrapcdn.com/ -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-{% endblock head0 %}
-
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/forms.css' %}">
 <style>
@@ -61,7 +55,25 @@
                 <form method="post" action="">
                     {% csrf_token %}
                     <fieldset class="form-group">
-                        <legend class="border-bottom mb-4 center">Sign Up</legend>
+
+
+
+
+                        <div class="row pb-5">
+                            <div class="col-2" style="min-width: 200px">
+                                <a href="{% url 'login' %}">
+                                    <legend class="login-disabled">Login</legend>
+                                </a>
+                            </div>
+                            <div class="col-2" style="min-width: 200px">
+                                <a href="{% url 'register' %}">
+                                    <legend class="login-active"><b>Sign Up</b></legend>
+                                </a>
+                            </div>
+                        </div>
+
+
+                        {% comment %} <legend class="border-bottom mb-4 center">Sign Up</legend> {% endcomment %}
                         {{ form|crispy }}
                         {% comment %} {{ form.username|as_crispy_field }}
                         {{ form.password1|as_crispy_field }}

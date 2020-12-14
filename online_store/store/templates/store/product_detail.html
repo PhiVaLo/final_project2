@@ -1,6 +1,10 @@
 {% extends 'store/base.html' %}
 
+{% block no-bootstrap %}{% endblock no-bootstrap %}
+
 {% block head %}
+{% comment %} 
+
 <style>
     .product-img {
         width: 50vh;
@@ -24,9 +28,10 @@
             {
             % endcomment %
         }
+</style> 
 
-    }
-</style>
+{% endcomment %}
+
 {% endblock head %}
 
 
