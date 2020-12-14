@@ -191,9 +191,10 @@ p {
 .btn-3 {
     display: inline-block;
     padding: 7px;
-    /* border-radius: 6px; */
+    /* border-top-left-radius: 15px; */
     border-top-right-radius: 15px;
     border-bottom-left-radius: 15px;
+    /* border-bottom-right-radius: 15px; */
     background: linear-gradient(to bottom right, rgb(0, 0, 0), rgba(118, 193, 255, 0.727));
     color: #9dff9d;
     ;
@@ -780,7 +781,7 @@ tr > th:last-child {
     margin: -2px 0 0 10px;
 }
 .chg-quantity {
-	width: 12px;
+    width: 12px;
 	cursor: pointer;
 	display: block;
 	margin-top: 5px;
@@ -790,13 +791,13 @@ tr > th:last-child {
 /* Chrome, Safari, Edge, Opera */
 .cart-page input::-webkit-outer-spin-button,
 .cart-page input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 /* Firefox */
 .cart-page input[type=number] {
     -moz-appearance: textfield;
-  }
+}
 .cart-page input:disabled {
     background-color: #fff;      
 }
@@ -811,6 +812,25 @@ tr > th:last-child {
     width: 160px;
     text-align: center;
 }
+
+/* ============================================================================================== */
+/* order history */
+/* ============================================================================================== */
+
+.order-history {
+    background: #33333333;
+    background: linear-gradient(to bottom right, rgba(216, 93, 53, 0.9), rgba(177, 208, 240, 0.8));
+    background: linear-gradient(to bottom right, rgba(55, 40, 35, 0.9), rgba(177, 208, 240, 0.8));
+    color: white;
+    margin-bottom: 40px;
+    padding: 16px;
+    border-radius: 6px;
+}
+
+.cart-page th:first-child {
+    width: 54%;
+}
+
 
 
 /* ============================================================================================== */

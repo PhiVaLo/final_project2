@@ -94,7 +94,19 @@ def order_history(request):
     order = data['order']
     cartItems = data['cartItems']
 
-    context = {'items': items, 'order': order, 'cartItems': cartItems}
+    products = Product.objects.all()
+    orderItem = OrderItem.objects.all()    
+    orders = Order.objects.all()
+
+    context = {
+        'items': items, 
+        'order': order, 
+        'cartItems': cartItems, 
+
+        'products': products,
+        'orderItem': orderItem, 
+        'orders': orders
+    }
     return render(request, 'store/order_history.html', context)
 
 # =====================================================================================

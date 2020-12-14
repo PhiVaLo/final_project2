@@ -1,34 +1,80 @@
 {% extends 'store/base.html' %}
+{% load tz %}
 
 {% block content %}
-<h1>Order History</h1>
 
-<p>{{ order.date_order }}</p>
-<p>{{ user.is_authenticated }}</p>
+{% for order in orders reversed %}
+{% if order.profile.user == user and order.complete == True %}
+<div class="small-container cart-page">
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+        <tbody>
+            <div class="order-history">
 
+                <div style="width: 170px; display: inline-block">
+                    <p>Order Completed:</p>
+                    <p>Order Number:</p>
+                    <p>Transaction ID:</p>
+                    <p>Date Ordered:</p>
+                </div>
+                <div style=" display: inline-block">
+                    <p>{{ order.complete }}</p>
+                    <p>{{ order }}</p>
+                    <p>{{ order.transaction_id }}</p>
+                    {% timezone "Europe/Paris" %}
+                    <p>{{ order.date_order }}</p>
+                    {% endtimezone %}
+                </div>
+
+                {% for item in orderItem %}
+                {% if order == item.order %}
+                <tr>
+                    <td>
+                        <div class="cart-info">
+                            {% for product in products %}
+                            {% if product == item.product %}
+
+                            <img src="{{ item.product.imageURL }}">
+                            <div>
+                                <p>{{ item.product.name }}</p>
+                                <small>Price: ${{ item.product.price }}</small>
+                                <br>
+                                {% comment %} <a href="#" data-product={{ item.product.id }} data-action="delete" class="update-cart btn-exit">Remove</a> {% endcomment %}
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+
+                    </td>
+                    <td><input type="number" value="{{ item.quantity }}" disabled style="color: black; text-align: center"></td>
+                    <td>${{ item.get_total }}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+        </tbody>
+    </table>
+
+    <div class="total-price">
+        <table>
+            <tr>
+                <td>Total</td>
+                <td> <strong>${{ order.get_cart_total }}</strong></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<hr class="border-bottom">
+{% endif %}
+{% endfor %}
 
 {% endblock content %}
