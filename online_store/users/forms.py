@@ -40,7 +40,7 @@ class UserRegisterForm(UserCreationForm):
     # address2 = forms.CharField(max_length=200, required=False)
 
     phone_regex = RegexValidator(regex=r"^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$", message=("Enter a valid international mobile phone number starting with +(country code)"))
-    phone = forms.CharField(validators=[phone_regex], max_length=17)
+    phone = forms.CharField(validators=[phone_regex], max_length=17, required=False)
 
     # additional_information = forms.CharField(max_length=2000, widget=forms.Textarea)
 
