@@ -264,7 +264,9 @@
     <div class="row">
         {% for product in products %}
         <div class="col-4 item {{ product.category }}">
-            <a href="{% url 'product_detail' product.pk %}"> <img src="{{ product.imageURL }}"> </a>
+            <a href="{% url 'product_detail' product.pk %}"> 
+                <img src="{{ product.imageURL }}">
+            </a>
             <h4>{{ product.name }}</h4>
             <div class="rating">
                 <i class="fas fa-star"></i>

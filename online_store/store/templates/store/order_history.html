@@ -2,6 +2,9 @@
 {% load tz %}
 
 {% block content %}
+<div class="small-container" style="padding-top: 70px">
+    <h1>Order History</h1>
+</div>
 
 {% for order in orders reversed %}
 {% if order.profile.user == user and order.complete == True %}
@@ -17,15 +20,14 @@
 
         <tbody>
             <div class="order-history">
-
-                <div style="width: 170px; display: inline-block">
+                <div class="order-status">
                     <p>Order Completed:</p>
                     <p>Order Number:</p>
                     <p>Transaction ID:</p>
                     <p>Date Ordered:</p>
                 </div>
                 <div style=" display: inline-block">
-                    <p>{{ order.complete }}</p>
+                    <p class="green">{{ order.complete }}</p>
                     <p>{{ order }}</p>
                     <p>{{ order.transaction_id }}</p>
                     {% timezone "Europe/Paris" %}
@@ -73,7 +75,7 @@
     </div>
 </div>
 
-<hr class="border-bottom">
+<hr class="border-bottom m-0">
 {% endif %}
 {% endfor %}
 
