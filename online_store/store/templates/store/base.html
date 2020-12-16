@@ -180,8 +180,6 @@
 
 
 
-
-
     <!-- ----------------------------------------------------------------------------------- -->
     <!-- Navigation -->
     <!-- ----------------------------------------------------------------------------------- -->
@@ -193,7 +191,7 @@
                 <div class="logo">
                     <a href="{% url 'home' %}">
                         {% block home-logo %}
-                        <img src="{% static 'images/logo.png' %}" width="150px">
+                        <img src="{% static 'images/logo.png' %}" width="110px">
                         {% endblock home-logo %}
                     </a>
                 </div>
@@ -266,10 +264,16 @@
                 </div>
             </div>
 
+
+
+
+
+
             {% block home %}{% endblock home %}
         </div>
     </div>
 
+    <br><br>
 
 
 
@@ -278,8 +282,7 @@
 
 
 
-
-    <div class="">
+    <div>
 {% comment %}     
         {% if messages %}
         {% for message in messages %}
@@ -295,6 +298,8 @@
 
     {% comment %} <a class="django-admin" href="http://localhost:8000/admin" target="_blank">Django Admin</a>
     {% endcomment %}
+
+
 
 
     <!-- ----------------------------------------------------------------------------------- -->

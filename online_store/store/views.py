@@ -1,7 +1,9 @@
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 
 from django.shortcuts import render
 from django.http import JsonResponse
+
 
 from datetime import datetime
 import json
@@ -87,6 +89,7 @@ def checkout(request):
 
 # =====================================================================================
 
+@login_required
 def order_history(request):
     data = cartData(request)
 
