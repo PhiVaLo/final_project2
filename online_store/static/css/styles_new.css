@@ -220,10 +220,12 @@ p {
     display: inline-block;
     padding: 7px;
     border-radius: 6px;
-    background: linear-gradient(to bottom right, rgba(226, 102, 61, 0.9), rgba(166, 196, 82, 0.6));
-    color: white;
+    background: linear-gradient(to bottom right, rgb(0, 0, 0), rgba(118, 193, 255, 0.727));
     font-size: 14px;
     margin-right: 5px;
+
+    line-height: 1;
+    font-family: 'Poppins', sans-serif;
 }
 
 .btn-3 {
@@ -236,9 +238,8 @@ p {
     border-top-right-radius: 15px;
     border-bottom-left-radius: 15px;
     /* border-bottom-right-radius: 15px; */
+    
     background: linear-gradient(to bottom right, rgb(0, 0, 0), rgba(118, 193, 255, 0.727));
-    color: #9dff9d;
-    ;
     font-size: 14px;
 }
 
