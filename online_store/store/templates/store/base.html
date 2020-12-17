@@ -140,10 +140,10 @@
                 </ul>
                 {% else %}
                 <ul class="navbar-nav">
-                    <button class="btn-2 navbar-dropdown">Account</button>
+                    <button class="btn-2 navbar-dropdown green">Account</button>
                     <li>
                         <div class="profile-dropdown hidden" id="profile-dropdown">
-                            <a href="{% url 'login' %}?next={{ request.path }}"><i class="fas fa-sign-in-alt"></i>Login</a>
+                            <a href="{% url 'login' %}?next={{ request.path }}"><i class="fas fa-sign-in-alt"></i> Login</a>
                             <a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Sign Up</a>
                             <hr class="line">
                             <a href="{% url 'store' %}"><i class="fas fa-cart-arrow-down"></i> Store </a>
