@@ -17,18 +17,45 @@ body {
     display: none;
 }
 
+.active {
+    color: white !important;
+}
 
+/* ================================================================================ */
+/* django admin button */
+/* ================================================================================= */
+
+.django-admin {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    border: 1px solid rgb(24, 118, 74);
+    border-radius: 6px;
+    background: linear-gradient(to bottom right, rgba(55, 240, 185, 1), rgba(0,0,0, 1.0));
+    color: white;
+}
+.django-admin:hover {
+    background: linear-gradient(to bottom right, rgba(55, 240, 185, 0.9), rgba(0,0,0, 0.5));
+}
+.django-admin:active {
+    background: linear-gradient(to bottom right, rgba(55, 240, 185, 0.9), rgba(0,0,0, 0.5));
+}
 
 /* ================================================================================ */
 /* Colors */
 /* ================================================================================= */
 
-.green {
-    color: #9dff9d;
-}
-
 .red {
     color: #ff7575 !important;
+}
+
+.green {
+    color: #9dff9d !important;
+}
+
+.blue {
+    color: #9de3ff !important;
 }
 
 .dark {
@@ -98,10 +125,13 @@ body {
     background-color: rgba(13, 14, 16, 0.95);
     background-color: rgba(13, 14, 16, 1);
 
+    min-height: 80px;
+
 }
 
 .logo {
     margin-right: 40px;
+    line-height: 0;
 }
 
 nav {
@@ -118,11 +148,12 @@ nav ul {
 nav ul li {
     display: inline-block;
     margin-right: 20px;
+    line-height: 2;
+
 }
 
 .navbar a {
-    color: #555;
-    color: #ddd;
+    color: #777;
 }
 
 a {
@@ -198,6 +229,9 @@ p {
 .btn-3 {
     display: inline-block;
     padding: 7px;
+    line-height: 1;
+    font-family: 'Poppins', sans-serif;
+
     /* border-top-left-radius: 15px; */
     border-top-right-radius: 15px;
     border-bottom-left-radius: 15px;
@@ -258,7 +292,7 @@ p {
 }
 
 .nav-cart {
-    margin: 0 5px;
+    margin: 5px 5px 0 5px;
     color: white;
 }
 
@@ -286,14 +320,7 @@ p {
     color: #fff;
     margin: 7px 10px 7px 5px;
     text-decoration: none;
-    transition: all 0.3s ease;
 }
-
-.navbar-nav a:hover {
-    color: #fff;
-    text-decoration: none;
-}
-
 
 .profile {
     display: flex;
@@ -895,7 +922,7 @@ tr > th:last-child {
     background: radial-gradient(#fff, #adcad6);
     background: radial-gradient(#fff, #06161d);
     background: radial-gradient(rgb(255, 18, 18), #06161d);
-
+    min-height: 70vh;
 }
 .form-container {
     background: #fff;
@@ -1047,6 +1074,14 @@ tr > th:last-child {
 /* Weather */
 /* ============================================================================================== */
 
+.weather-flex {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
 .box-wrapper {
     border-radius: 6px;
     padding: 5px;
@@ -1079,7 +1114,7 @@ tr > th:last-child {
     nav ul {
         position: absolute;
         top: 70px;
-        top: 78px;
+        top: 67px;
         left: 0;
         background: #333;
         width: 100%;
@@ -1094,9 +1129,6 @@ tr > th:last-child {
         margin-right: 50px;
         margin-top: 10px;
         margin-bottom: 10px;
-    }
-    nav ul li a {
-        color: #fff !important;
     }
     .menu-icon {
         display: block;

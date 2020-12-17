@@ -48,7 +48,6 @@
                                 <p>{{ item.product.name }}</p>
                                 <small>Price: ${{ item.product.price }}</small>
                                 <br>
-                                {% comment %} <a href="#" data-product={{ item.product.id }} data-action="delete" class="update-cart btn-exit">Remove</a> {% endcomment %}
                             </div>
                         </div>
                         {% endif %}
@@ -80,3 +79,11 @@
 {% endfor %}
 
 {% endblock content %}
+
+<!-- ----------------------------------------------------------------------------------- -->
+
+{% block script %}
+<script>
+    document.querySelector('#store').classList.add('active');
+</script>
+{% endblock script %}

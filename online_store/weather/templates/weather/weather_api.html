@@ -1,25 +1,10 @@
 {% extends 'store/base.html' %}
-{% block head %}
-<style>
-    .flexbox {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        text-align: center;
-        flex-wrap: wrap;
-    }
-</style>
-{% endblock head %}
-
 {% block content %}
-<br><br>
+<br><br><br>
 
 <div class="">
-    <div class="container" style="height: 70vh">
+    <div class="container">
         <div class="">
-
-
-
 
             <div style="text-align: center">
                 <h1 class="mt-3">Weather Forecast</h1>
@@ -48,7 +33,7 @@
             <div class="box-element1 box-element3 dark">
                 <h2 class="center border-bottom mb-4 pb-2">{{ weather.region }}</h2>
 
-                <div class="flexbox">
+                <div class="weather-flex">
                     <div>
                         <h4>{{ weather.daytime }}</h5>
                             <h4>{{ weather.status }}</h5>
@@ -65,7 +50,7 @@
 
                 <br>
 
-                <div class="flexbox">
+                <div class="weather-flex">
                     <div class="box-wrapper">
                         <h5>{{ weather.day0 }}</h5>
                         <img src="{{ weather.logo0 }}">
@@ -105,17 +90,9 @@
             </div>
             {% endif %}
 
-
-
-
-
         </div>
     </div>
 </div>
-
-
-
-
 {% endblock content %}
 
 {% block script %}

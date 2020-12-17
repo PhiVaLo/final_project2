@@ -15,6 +15,7 @@
 </style>
 {% endblock head %}
 
+<!-- ----------------------------------------------------------------------------------- -->
 
 {% block content %}
 <div class="container">
@@ -114,12 +115,18 @@
 </div>
 {% endblock content %}
 
+<!-- ----------------------------------------------------------------------------------- -->
 
 {% block script %}
 <script>
+    document.querySelector('#store').classList.add('active');
+</script>
+
+<!-- ------------------------------ -->
+
+
+<script>
     let total = '{{ order.get_cart_total }}'
-
-
 
     if (user != 'AnonymousUser') {
         document.querySelector('#form-button').classList.add('hidden');

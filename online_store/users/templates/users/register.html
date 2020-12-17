@@ -43,6 +43,8 @@
 </style>
 {% endblock head %}
 
+<!-- ----------------------------------------------------------------------------------- -->
+
 {% block content %}
 
 
@@ -50,14 +52,10 @@
     <div class="container">
         <div class="row">
 
-
             <div class="box-element1 box-element2 dark2">
                 <form method="post" action="">
                     {% csrf_token %}
                     <fieldset class="form-group">
-
-
-
 
                         <div class="row pb-5">
                             <div class="col-2" style="min-width: 200px">
@@ -109,16 +107,4 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
 {% endblock content %}

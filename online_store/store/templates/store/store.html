@@ -1,6 +1,8 @@
 {% extends 'store/base.html' %}
 {% load static %}
 
+
+{% comment %} 
 {% block search-bar %}
 <nav class="navbar navbar-light bg-light">
     <form class="form-inline search-bar">
@@ -8,59 +10,11 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
 </nav>
-{% endblock search-bar %}
-
+{% endblock search-bar %} {% endcomment %}
 
 {% block no-bootstrap %}{% endblock no-bootstrap %}
 
-
 {% block head %}
-<style>
-
-{% comment %} 
-    a,
-    a:hover {
-        text-decoration: none;
-        color: black;
-    }
-
-
-    .store-flex {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-    }
-
-
-
-
-    .box-category {
-        width: 200px;
-        height: 100vh;
-        vertical-align: top;
-    }
-
-    .box-product {
-        border: 1px solid black;
-        width: 28vh;
-        height: 28vh;
-        margin: 0 10px 10px 10px;
-        transition: all 0.3s ease;
-    }
-
-    .box-product:hover {
-        filter: brightness(70%);
-    }
-
-    .product-title {
-        position: absolute;
-        bottom: 0px;
-        left: 10vh;
-    }
- {% endcomment %}
-</style>
-
-
 <style>
     .test-btn {
         width:20px; 
@@ -75,159 +29,13 @@
         opacity: 1;
     }
 </style>
-
 {% endblock head %}
 
 
-
-
-
-
-
 {% block content %}
-{% comment %}
-<div class="row">
-
-    <div class="col-lg-3">
-
-        <div class="box-element category">
-            <h3 class="border-bottom border-dark mb-4 pb-2">Category</h3>
-
-            <h5>Cloths</h5>
-            <input id="1" type="checkbox" name="1" value=""> <label for="1">Shirt</label><br>
-            <input id="2" type="checkbox" name="2" value=""> <label for="2">Pant</label><br>
-            <input id="3" type="checkbox" name="3" value=""> <label for="3">Shoes</label><br>
-
-            <div class="border-bottom border-dark mb-3 mt-3"></div>
-
-            <h5>Accessories</h5>
-            <input id="4" type="checkbox" name="4" value=""> <label for="4">Bag</label><br>
-            <input id="5" type="checkbox" name="5" value=""> <label for="5">Watch</label><br>
-            <input id="6" type="checkbox" name="6" value=""> <label for="6">Sunglass</label><br>
-
-            <div class="border-bottom border-dark mb-3 mt-3"></div>
-
-            <h5>Electronics</h5>
-            <input id="7" type="checkbox" name="7" value=""> <label for="7">Computer</label><br>
-            <input id="8" type="checkbox" name="8" value=""> <label for="8">Laptop</label><br>
-            <input id="9" type="checkbox" name="9" value=""> <label for="9">Mobile</label><br>
-
-            <div class="border-bottom border-dark mb-3 mt-3"></div>
-
-            <h5>Extra</h5>
-            <input id="10" type="checkbox" name="10" value=""> <label for="10">Other</label><br>
-        </div>
-    </div>
-
-    <div class="col-lg-9">
-        <div class="row">
-            {% for product in products %}
-            <div class="col-lg-4">
-                <img class="thumbnail" src="{{ product.imageURL }}" alt="">
-                <div class="box-element product">
-                    <h6><strong>{{ product.name }}</strong></h6>
-                    <hr>
-                    <div class="flex">
-                        <button data-product={{ product.id }} data-action="add"
-                            class="btn btn-outline-secondary add-btn update-cart m-1">Add to Cart </button>
-                        <a class="btn btn-outline-success m-1" href="{% url 'product_detail' product.pk %}">View</a>
-                        <div style="flex: 1"></div>
-                        <h4>${{ product.price }}</h4>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-
-        </div>
-    </div>
-</div>
-{% endcomment %}
-
-
-{% comment %}
-
-<table>
-    <tr>
-        <td class="box-category box-element category">
-            <div class="box-category">
-
-                <h3 class="border-bottom border-dark mb-4 pb-2">Category</h3>
-
-                <h5>Cloths</h5>
-                <input id="1" type="checkbox" name="1" value="" checked> <label for="1">Shirt</label><br>
-                <input id="2" type="checkbox" name="2" value=""> <label for="2">Pant</label><br>
-                <input id="3" type="checkbox" name="3" value=""> <label for="3">Shoes</label><br>
-
-                <div class="border-bottom border-dark mb-3 mt-3"></div>
-
-                <h5>Accessories</h5>
-                <input id="4" type="checkbox" name="4" value="" checked> <label for="4">Bag</label><br>
-                <input id="5" type="checkbox" name="5" value="" checked> <label for="5">Phone Case</label><br>
-                <input id="6" type="checkbox" name="6" value="" checked> <label for="6">Sunglass</label><br>
-
-                <div class="border-bottom border-dark mb-3 mt-3"></div>
-
-                <h5>Electronics</h5>
-                <input id="7" type="checkbox" name="7" value=""> <label for="7">Computer</label><br>
-                <input id="8" type="checkbox" name="8" value=""> <label for="8">Laptop</label><br>
-                <input id="9" type="checkbox" name="9" value=""> <label for="9">Mobile</label><br>
-
-                <div class="border-bottom border-dark mb-3 mt-3"></div>
-
-                <h5>Extra</h5>
-                <input id="10" type="checkbox" name="10" value="" checked> <label for="10">Other</label><br>
-
-
-            </div>
-
-        </td>
-        <td class="store-flex">
-            {% for product in products %}
-            <div class="item {{ product.category }} mb-5">
-                <a href="{% url 'product_detail' product.pk %}">
-                    <img class=" box-product" src="{{ product.imageURL }}">
-                </a>
-                <div class="text-center">
-                    <a href="{% url 'product_detail' product.pk %}"><b>{{ product.name }}</b> </a>
-                </div>
-                <div class="text-center">
-                    <a href="{% url 'product_detail' product.pk %}"><b>${{ product.price }}</b> </a>
-                </div>
-
-
-
-                <!-- buttons to be deleted / added in detail_view -->
-                <div class=" text-center">
-                    <button data-product={{ product.id }} data-action="add"
-                        class="btn btn-outline-success add-btn rounded update-cart m-1">+ </button>
-                    <a class="btn btn-outline-info rounded m-1" href="{% url 'product_detail' product.pk %}">?</a>
-                </div>
-
-                <p class="center">{{ product.category }}</p>
-
-
-            </div>
-            {% endfor %}
-        </td>
-
-
-    </tr>
-</table>
-{% endcomment %}
-
-
-
-
-
-
-
-
-
-
 <!-- ----------------------------------------------------------------------------------- -->
 <!-- Categories -->
 <!-- ----------------------------------------------------------------------------------- -->
-
 <div class="small-container">
     <div class="row row-2">
         <h2>Category</h2>
@@ -242,8 +50,6 @@
         {% endfor %}
     </div>
 </div>
-
-
 
 <!-- ----------------------------------------------------------------------------------- -->
 <!-- Products -->
@@ -277,11 +83,8 @@
             </div>
             <p>${{ product.price }}</p>
 
-
             <!-- buttons to be deleted / added in detail_view -->
             <button data-product={{ product.id }} data-action="add" class="update-cart test-btn">+</button>
-
-
         </div>
         {% endfor %}
     </div>
@@ -294,34 +97,6 @@
         <span>&#8594;</span>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -350,20 +125,14 @@
 
     {% endif %}
 </div>
-<!-- ----------------------------------------------------------------------------------- -->
-
-
-
-
 {% endblock content %}
+<!-- ----------------------------------------------------------------------------------- -->
 
 {% block script %}
 <script>
     document.querySelector('#store').classList.add('active');
 
-
-
-    // jQuery
+    // jQuery - category
     $(document).ready(function () {
 
         $('#1').click(function () {

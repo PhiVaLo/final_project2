@@ -15,10 +15,9 @@
 </style>
 {% endblock head %}
 
+<!-- ----------------------------------------------------------------------------------- -->
+
 {% block content %}
-
-
-
 <div class="account-page">
 
         {% if messages %}
@@ -51,7 +50,6 @@
                         {{ u_form|crispy }}
                         {{ p_form|crispy }}
 
-
                         <br>
                         <a href="{% url 'password_change' %}">
                             <h6>CHANGE PASSWORD</h6>
@@ -64,24 +62,7 @@
                 </form>
             </div>
 
-
-
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 {% endblock content %}
