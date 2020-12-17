@@ -2,113 +2,7 @@
 
 {% block no-bootstrap %}{% endblock no-bootstrap %}
 
-{% block head %}
-{% comment %} 
-
-<style>
-    .product-img {
-        width: 50vh;
-        height: 50vh;
-    }
-
-    th {
-        padding-right: 20px;
-        vertical-align: top;
-    }
-
-    .fflex {
-        display: flex;
-
-            {
-            % comment %
-        }
-
-        justify-content: space-between;
-
-            {
-            % endcomment %
-        }
-</style> 
-
-{% endcomment %}
-
-{% endblock head %}
-
-
-
-
 {% block content %}
-
-{% comment %} <div class="row">
-    <div class="col-lg-3 text-center">
-        <img class="product-img" src="{{ product.imageURL }}">
-    </div>
-    <div class="col-lg-9">
-        <table class="ml-3">
-            <tr>
-                <th>Product:</th>
-                <td>{{ product.name }}</td>
-            </tr>
-            <tr>
-                <th>Price:</th>
-                <td>${{ product.price }}</td>
-            </tr>
-            <tr>
-                <th>Description:</th>
-                <td>{{ product.description }}</td>
-            </tr>
-        </table>
-
-    </div>
-</div> {% endcomment %}
-
-
-{% comment %}
-
-<div class="fflex">
-    <div>
-        <img class="product-img" src="{{ product.imageURL }}">
-    </div>
-    <div class="ml-4">
-        <h3>{{ product.name }}</h3>
-        <h5>${{ product.price }}</h5>
-        <br><br>
-
-
-
-        <form>
-            <div class="form-field">
-                <input class="form-control" type="text" name="color" placeholder="color">
-            </div>
-            <div class="form-field">
-                <input class="form-control" type="text" name="size" placeholder="size">
-            </div>
-
-            <button data-product={{ product.id }} data-action="add"
-                class="btn btn-success btn-block mt-2 add-btn update-cart ">Add to Cart </button>
-        </form>
-
-    </div>
-</div>
-
-
-
-<div class="text-center mt-5">
-    <a class="btn btn-primary rounded text-uppercase text-center" href="{% url 'store' %}"><span
-            style="margin: 0 15px">&#x2190;</span> Back to products</a>
-</div> {% endcomment %}
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- =================================================================================== -->
 <!-- single product details -->
 <!-- =================================================================================== -->
@@ -194,10 +88,9 @@
     </div>
 
 </div>
-
-
-
 {% endblock content %}
+
+<!-- ----------------------------------------------------------------------------------- -->
 
 {% block script %}
 <!-- js for product gallery -->

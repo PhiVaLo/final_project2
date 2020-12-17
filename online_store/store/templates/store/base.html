@@ -3,8 +3,6 @@
 <html lang="en">
 
 <head>
-
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" maximum-scale=1, minimum-scale=1>
     <link rel="shortcut icon" href="{% static 'images/django.png' %}">
@@ -85,100 +83,12 @@
 </head>
 
 <body>
-
     <!-- ----------------------------------------------------------------------------------- -->
     <!-- Scroll Up Button -->
     <!-- ----------------------------------------------------------------------------------- -->
     <div class="scroll-up-btn">
         <i class="fas fa-angle-up"></i>
     </div>
-
-    <!-- ----------------------------------------------------------------------------------- -->
-    <!-- Navigation -->
-    <!-- ----------------------------------------------------------------------------------- -->
-    {% comment %}
-    <nav class="navbar navbar-expand-lg navbar-dark dark">
-        <a class="navbar-brand" href="{% url 'home' %}"> <i class="fab fa-drupal logo"></i> </a>
-
-        <button class="navbar-toggler grey" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li id="home" class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-                <li id="store" class="nav-item"><a class="nav-link" href="{% url 'store' %}">Shop</a></li>
-                <li id="weather" class="nav-item"><a class="nav-link" href="{% url 'weather' %}">Weather</a></li>
-                <li class="nav-item"><a class="nav-link red" href="#">Blog</a></li>
-                <li class="nav-item"><a class="nav-link red" href="#">Contact</a></li>
-            </ul>
-
-
-
-
-            {% if user.is_authenticated %}
-            <ul class="navbar-nav ml-auto">
-                <label for="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    <li class="mr-3 pt-1 green">{{ user.get_username }} ({{ user.profile.country }})</li>
-                </label>
-                <li class="dropdown mr-3">
-                    <a class="profile" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <img id="profile-icon" src="{{ user.profile.image.url }}" alt="">
-                    </a>
-                    <div class="dropdown-menu profile-dropdown" aria-labelledby="navbarDropdown">
-                        <a class="" href="{% url 'profile' %}"><i class="fas fa-id-badge"></i> Profile</a>
-                        <a class="" href="{% url 'logout' %}?next={{ request.path }}"><i
-                                class="fas fa-sign-out-alt"></i> Logout</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="red" href="{% url 'order_history' %}"><i class="fas fa-history"></i> Order History
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="" href="{% url 'store' %}"><i class="fas fa-cart-arrow-down"></i> Store </a>
-                        <a class="" href="{% url 'cart' %}"><i class="fas fa-shopping-basket"></i> Cart </a>
-                        <a class="" href="{% url 'checkout' %}"><i class="fas fa-credit-card"></i> Checkout </a>
-                    </div>
-                </li>
-            </ul>
-            {% else %}
-            <ul class="navbar-nav ml-auto">
-                <label for="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    <li class="mr-3 pt-1 red">Anonymous User</li>
-                </label>
-                <li class="dropdown mr-3">
-                    <a class="profile" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <img id="profile-icon" src="/media/default-profile.jpg">
-                    </a>
-                    <div class="dropdown-menu profile-dropdown" aria-labelledby="navbarDropdown">
-                        <a class="" href="{% url 'login' %}?next={{ request.path }}"><i
-                                class="fas fa-sign-in-alt"></i>Login</a>
-                        <a class="" href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Sign Up</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="" href="{% url 'store' %}"><i class="fas fa-cart-arrow-down"></i> Store </a>
-                        <a class="" href="{% url 'cart' %}"><i class="fas fa-shopping-basket"></i> Cart </a>
-                        <a class="" href="{% url 'checkout' %}"><i class="fas fa-credit-card"></i> Checkout </a>
-                    </div>
-                </li>
-            </ul>
-
-            {% endif %}
-
-            <a href="{% url 'cart' %}"><i class="fas fa-cart-arrow-down"></i></a>
-            <p id="cart-total">{{ cartItems }}</p>
-
-        </div>
-    </nav>
-
-    {% block search-bar %}{% endblock search-bar %}
-
-
-    {% endcomment %}
-
-
 
     <!-- ----------------------------------------------------------------------------------- -->
     <!-- Navigation -->
@@ -197,21 +107,17 @@
                 </div>
                 <nav>
                     <ul id="MenuItems">
-                        <li id="home"><a href="{% url 'home' %}">Home</a></li>
-                        <li id="store"><a href="{% url 'store' %}">Products</a></li>
-                        <li><a href="{% url 'weather' %}">Weather</a></li>
+                        <li><a id="home" href="{% url 'home' %}">Home</a></li>
+                        <li><a id="store" href="{% url 'store' %}">Products</a></li>
+                        <li><a id="weather" href="{% url 'weather' %}">Weather</a></li>
                         <li><a class="red" href="">Contact</a></li>
                     </ul>
                 </nav>
 
-
-
-
                 {% if user.is_authenticated %}
                 <ul class="navbar-nav">
                     <li>
-                        <button class="btn-3 navbar-dropdown green">{{ user.get_username }}
-                            ({{ user.profile.country }})</button>
+                        <button class="btn-3 navbar-dropdown blue">{{ user.get_username }} ({{ user.profile.country }})</button>
                     </li>
                     <li>
                         <a class="navbar-dropdown profile" href="#">
@@ -222,39 +128,33 @@
                             <a class="" href="{% url 'logout' %}?next={{ request.path }}"><i
                                     class="fas fa-sign-out-alt"></i> Logout</a>
                             <hr class="line">
-                            <a href="{% url 'order_history' %}"><i class="fas fa-history"></i> Order
-                                History</a>
+                            <a href="{% url 'order_history' %}"><i class="fas fa-history"></i> Order History</a>
                             <hr class="line">
                             <a href="{% url 'store' %}"><i class="fas fa-cart-arrow-down"></i> Store </a>
                             <a href="{% url 'cart' %}"><i class="fas fa-shopping-basket"></i> Cart </a>
                             <a class="red" href="{% url 'checkout' %}"><i class="fas fa-credit-card"></i> Checkout </a>
+                            <hr class="line">
+                            <a class="green" href="http://localhost:8000/admin" target="_blank"><i class="fas fa-user-shield"></i> Django Admin</a>   
                         </div>
                     </li>
                 </ul>
                 {% else %}
                 <ul class="navbar-nav">
                     <button class="btn-2 navbar-dropdown">Account</button>
-                    {% comment %} <li class="navbar-dropdown red">Anonymous User</li> {% endcomment %}
                     <li>
-                        {% comment %} <a class="navbar-dropdown profile" href="#">
-                            <img id="profile-icon" src="/media/default-profile.jpg">
-                        </a> {% endcomment %}
                         <div class="profile-dropdown hidden" id="profile-dropdown">
-                            <a href="{% url 'login' %}?next={{ request.path }}"><i class="fas fa-sign-in-alt"></i>
-                                Login</a>
+                            <a href="{% url 'login' %}?next={{ request.path }}"><i class="fas fa-sign-in-alt"></i>Login</a>
                             <a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Sign Up</a>
                             <hr class="line">
                             <a href="{% url 'store' %}"><i class="fas fa-cart-arrow-down"></i> Store </a>
                             <a href="{% url 'cart' %}"><i class="fas fa-shopping-basket"></i> Cart </a>
                             <a class="red" href="{% url 'checkout' %}"><i class="fas fa-credit-card"></i> Checkout </a>
+                            <hr class="line">
+                            <a class="green" href="http://localhost:8000/admin" target="_blank"><i class="fas fa-user-shield"></i> Django Admin</a>   
                         </div>
                     </li>
                 </ul>
                 {% endif %}
-
-
-
-
 
                 <a href="{% url 'cart' %}"><i class="fas fa-cart-arrow-down nav-cart"></i></a>
                 <p id="cart-total">{{ cartItems }}</p>
@@ -265,10 +165,6 @@
             </div>
 
 
-
-
-
-
             {% block home %}{% endblock home %}
         </div>
     </div>
@@ -277,12 +173,7 @@
 
 
 
-
-
-
-
-
-    <div>
+    <div style="min-height: 70vh">
 {% comment %}     
         {% if messages %}
         {% for message in messages %}
@@ -296,10 +187,7 @@
     </div>
 
 
-    {% comment %} <a class="django-admin" href="http://localhost:8000/admin" target="_blank">Django Admin</a>
-    {% endcomment %}
-
-
+    {% comment %} <a class="django-admin" href="http://localhost:8000/admin" target="_blank">Django Admin</a>    {% endcomment %}
 
 
     <!-- ----------------------------------------------------------------------------------- -->
@@ -345,12 +233,9 @@
         </div>
     </div>
 
-
     <!-- -------------------------------------------------------------------------------------- -->
-    <!-- jQuery -->
-
     <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
-
+    <!-- ------------------------------------------- -->
     <script>
         // Navigation Menu Toggle (small screen size)
         let MenuItems = document.getElementById("MenuItems");
@@ -364,18 +249,14 @@
             }
         }
     </script>
-
-
+    <!-- ------------------------------------------- -->
     <script>
         // profile dropdown
         $('.navbar-dropdown').click(() => {
             $('.profile-dropdown').toggle('.hidden')
         })
     </script>
-
-
-
-
+    <!-- ------------------------------------------- -->
     <script>
         // Slide Up Button
         $(document).ready(() => {
@@ -398,16 +279,7 @@
 
         })
     </script>
-
-
-
-
-
-
-
-
-
+    <!-- ------------------------------------------- -->
     {% block script %}{% endblock script %}
 </body>
-
 </html>
